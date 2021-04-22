@@ -9,25 +9,32 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1, 101);
 
-    println!("The secret number is: {}", secret_number); //this line only for testing
+    loop {
 
-    println!("Please input your guess:");
+        println!("Please input your guess:");
 
-    //mutable variable because of mut (immutable would be let guess = ...)
-    let mut guess = String::new(); //:: means new is an assoc. function of the String type (an assoc. fn is implemented on a type = static method)
+        //mutable variable because of mut (immutable would be let guess = ...)
+        let mut guess = String::new(); //:: means new is an assoc. function of the String type (an assoc. fn is implemented on a type = static method)
 
-    io::stdin().read_line(&mut guess) //& means that this argument is a reference
-        .expect("Failed to read line");
+        io::stdin().read_line(&mut guess) //& means that this argument is a reference
+            .expect("Failed to read line");
 
-    let guess: u32 = guess.trim().parse() //u32 can only contain numerical characters (unsigned 32 bit integers)
-        .expect("Please type a number");
+        let guess: u32 = match guess.trim().parse() { //parse returns a Result type
+            //u32 can only contain numerical characters (unsigned 32 bit integers)
+            Ok(num) => num,
+            Err(_) => continue, //underscore is a catchall value
+        };
 
-    println!("\nYou guessed: {}", guess);
+        println!("\nYou guessed: {}", guess);
 
-    match guess.cmp(&secret_number) { //cmp compares two values
-        Ordering::Less => println!("Too small!"),
-        Ordering::Greater => println!("Too big!"),
-        Ordering::Equal => println!("You win!")
+        match guess.cmp(&secret_number) { //cmp compares two values
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            } 
+        }
     }
 }
 
@@ -41,3 +48,4 @@ fn main() {
     //if Err value -> it will display message that is passed in as an argument of expect
 //a Match expression is made up of -> arms
     //an Arm consists of a pattern and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern 
+//switching from an Expect call to a Match expression is how you generally move from crashing on an error to handeling the error
