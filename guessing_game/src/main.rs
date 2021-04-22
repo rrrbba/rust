@@ -1,4 +1,5 @@
 use std::io; //standard library
+use std::cmp::Ordering; //enum with variants - less,greater,equal
 use rand::Rng;
 
 
@@ -18,7 +19,16 @@ fn main() {
     io::stdin().read_line(&mut guess) //& means that this argument is a reference
         .expect("Failed to read line");
 
+    let guess: u32 = guess.trim().parse() //u32 can only contain numerical characters (unsigned 32 bit integers)
+        .expect("Please type a number");
+
     println!("\nYou guessed: {}", guess);
+
+    match guess.cmp(&secret_number) { //cmp compares two values
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win!")
+    }
 }
 
 
@@ -29,3 +39,5 @@ fn main() {
     //the purpose of these Result types is to encode error-handling info
 //io::Result has the .expect method that you can call
     //if Err value -> it will display message that is passed in as an argument of expect
+//a Match expression is made up of -> arms
+    //an Arm consists of a pattern and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern 
