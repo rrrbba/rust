@@ -48,4 +48,4 @@ fn main() {
     //if Err value -> it will display message that is passed in as an argument of expect
 //a Match expression is made up of -> arms
     //an Arm consists of a pattern and the code that should be run if the value given to the beginning of the match expression fits that arm's pattern 
-//switching from an Expect call to a Match expression is how you generally move from crashing on an error to handeling the error
+//switching from an Expect call to a Match expression is how you generally move from crashing on an error to handeling the error 
