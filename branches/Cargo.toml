@@ -1,5 +1,5 @@
 [package]
-name = "variables"
+name = "branches"
 version = "0.1.0"
 authors = ["Rayven <>"]
 edition = "2018"
