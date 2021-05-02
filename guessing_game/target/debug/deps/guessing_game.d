@@ -1,5 +1,5 @@
-C:\Users\Rayven Wang\Documents\GitHub\rust\guessing_game\target\debug\deps\guessing_game.exe: src\main.rs
+/Users/Rayven/Documents/GitHub/rust/guessing_game/target/debug/deps/guessing_game: src/main.rs
 
-C:\Users\Rayven Wang\Documents\GitHub\rust\guessing_game\target\debug\deps\guessing_game.d: src\main.rs
+/Users/Rayven/Documents/GitHub/rust/guessing_game/target/debug/deps/guessing_game.d: src/main.rs
 
-src\main.rs:
+src/main.rs:
