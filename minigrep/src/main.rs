@@ -1,4 +1,5 @@
 use std::env; //bringing parent module into scope
+use std::fs;//to handle files
 
 fn main() {
 
@@ -11,4 +12,10 @@ fn main() {
 
     println!("Searching for {}", query);
     println!("In file {}", filename);
+
+    //Takes the filename, opens the file and returns a Result<String> of the file's contents
+    let contents = fs::read_to_string(filename)
+        .expect("Something went wrong reading the file");
+
+    println!("With text:\n{}", contents);
 }
