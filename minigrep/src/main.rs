@@ -9,7 +9,7 @@ fn main() {
     // println!("{:?}", args); 
 
     //Passing the vector to parse_config
-    let config = parse_config(&args);
+    let config = Config::new(&args);
 
     println!("Searching for {}", config.query);
     println!("In file {}", config.filename);
@@ -26,10 +26,14 @@ struct Config {
     filename: String,
 }
 
-//Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable)
-fn parse_config(args: &[String]) -> Config {
-    let query = &args[1].clone(); //program name
-    let filename = &args[2].clone();
+impl Config { //associates the new fn with Config
 
-    Config { query, filename }
+    //Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable)
+    fn new(args: &[String]) -> Config {
+        let query = args[1].clone(); //program name
+        let filename = args[2].clone();
+
+        Config { query, filename }
+    }
+
 }
