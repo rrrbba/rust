@@ -5,9 +5,10 @@ fn main() {
 
     //Collect command line arguments and prints them
     let args : Vec<String> = env::args().collect();
-    
-    println!("{:?}", args); //debug formatter
+    //debug formatter
+    // println!("{:?}", args); 
 
+    //Passing the vector to parse_config
     let (query, filename) = parse_config(&args);
 
     println!("Searching for {}", query);
@@ -20,7 +21,7 @@ fn main() {
     println!("With text:\n{}", contents);
 }
 
-//Extracted functionality for parsing arguments
+//Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable)
 fn parse_config(args: &[String]) -> (&str, &str) {
     let query = &args[1]; //program name
     let filename = &args[2];
