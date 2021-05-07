@@ -26,7 +26,8 @@ struct Config {
     filename: String,
 }
 
-impl Config { //associates the new fn with Config
+//associates the new fn with Config
+impl Config { 
 
     //Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable)
     fn new(args: &[String]) -> Config {
