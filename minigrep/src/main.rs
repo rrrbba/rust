@@ -14,7 +14,7 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.filename);
 
-    //Takes the filename, opens the file and returns a Result<String> of the file's contents
+    //Takes the filename, opens the file and returns a Result<String> of the file's contents 
     let contents = fs::read_to_string(config.filename)
         .expect("Something went wrong reading the file");
 
@@ -29,7 +29,7 @@ struct Config {
 //associates the new fn with Config
 impl Config { 
 
-    //Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable)
+    //Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable) 
     fn new(args: &[String]) -> Config {
         let query = args[1].clone(); //program name
         let filename = args[2].clone();
