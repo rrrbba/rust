@@ -31,6 +31,9 @@ impl Config {
 
     //Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable) 
     fn new(args: &[String]) -> Config {
+        if arg.len() < 3 {
+            panic!("Not enough arguments");
+        }
         let query = args[1].clone(); //program name
         let filename = args[2].clone();
 
