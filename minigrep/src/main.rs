@@ -11,7 +11,7 @@ fn main() {
     //Passing the vector to parse_config
     let config = Config::new(&args);
 
-    println!("Searching for {}", config.query);
+    println!("Searching for {}", config.query); //fix this
     println!("In file {}", config.filename);
 
     //Takes the filename, opens the file and returns a Result<String> of the file's contents 
