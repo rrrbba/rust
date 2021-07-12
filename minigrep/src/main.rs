@@ -30,14 +30,12 @@ struct Config {
 impl Config { 
 
     //Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable) 
-    fn new(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("Not enough arguments");
-        }
+    fn new(args: &[String]) -> Config {
+
         let query = args[1].clone(); //program name
         let filename = args[2].clone();
 
-        Ok(Config { query, filename }) 
+        Config { query, filename }
     }
 
 }
