@@ -30,16 +30,16 @@ struct Config {
 impl Config { 
 
     //Extracted functionality for parsing arguments (holds the logic for determining which argument goes in which variable) 
-    fn new(args: &[String]) -> Config {
+    fn new(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
-            panic!("Not enough arguments");
+            return Err("Not enough arguments");
         }
 
         //a lot devs avoid using clone to fix ownership problems because of runtime cost
         let query = args[1].clone(); //program name
         let filename = args[2].clone(); 
 
-        Config { query, filename }
+        Ok(Config { query, filename })
     }
 
 }
