@@ -1,5 +1,6 @@
 use std::env; //bringing parent module into scope
 use std::fs;//to handle files
+use std::process; //provides abort and exit for terminating the current process
 
 fn main() {
 
@@ -8,8 +9,11 @@ fn main() {
     //debug formatter
     // println!("{:?}", args); 
 
-    //Passing the vector to parse_config
-    let config = Config::new(&args);
+    
+    let config = Config::new(&args).unwrap_or_else(|err| { //unwrap allows to define custom non-panic error handling
+        println!("Problem parsing arguments: {}", err);
+        process::exit(1);
+    });
 
     println!("Searching for {}", config.query); 
     println!("In file {}", config.filename);
