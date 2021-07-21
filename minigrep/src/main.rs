@@ -18,6 +18,13 @@ fn main() {
     println!("Searching for {}", config.query); 
     println!("In file {}", config.filename);
 
+    run(config);
+
+
+}
+
+// Holds the logic that was in the main fn that isn't involved with setting up configuration or handling errors
+fn run(config: Config) {
     //Takes the filename, opens the file and returns a Result<String> of the file's contents 
     let contents = fs::read_to_string(config.filename)
         .expect("Something went wrong reading the file");
