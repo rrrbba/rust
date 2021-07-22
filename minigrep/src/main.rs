@@ -1,6 +1,7 @@
 use std::env; //bringing parent module into scope
 use std::fs;//to handle files
 use std::process; //provides abort and exit for terminating the current process
+use std::error::Error;
 
 fn main() {
 
@@ -24,12 +25,14 @@ fn main() {
 }
 
 // Holds the logic that was in the main fn that isn't involved with setting up configuration or handling errors
-fn run(config: Config) {
-    //Takes the filename, opens the file and returns a Result<String> of the file's contents 
-    let contents = fs::read_to_string(config.filename)
-        .expect("Something went wrong reading the file");
+fn run(config: Config) -> Result<(), Box<dyn Error>> { //fn will return a type that implements the Error trait
 
+    //Takes the filename, opens the file and returns a Result<String> of the file's contents 
+    let contents = fs::read_to_string(config.filename)?; //the ? will return the error value from the current fn for the caller to handle
+    
     println!("With text:\n{}", contents);
+
+    Ok(()) //means calling run for its side effects only, it doesn't rn a value needed
 }
 
 struct Config {
