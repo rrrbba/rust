@@ -33,3 +33,27 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> { //fn will return a ty
 
     Ok(()) //means calling run for its side effects only, it doesn't rn a value needed
 }
+
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    vec![]
+}
+
+//Test for taking a query and the text to search for the query in, and it will only return the lines from the text that contain the query
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn one_result() {
+        let query = "duct";
+        let contents = "\
+Rust:
+safe, fast, productive.
+Pick three.";
+
+        assert_eq!(
+            vec!["safe, fast, productive."],
+            search(query, contents)
+        );
+    }
+}
