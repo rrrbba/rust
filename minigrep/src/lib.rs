@@ -35,7 +35,15 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> { //fn will return a ty
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    vec![]
+
+    let mut results = Vec::new();
+    
+    for line in contents.lines(){ //line is method that handles line-by-line iteration of strings
+        if line.contains(query){
+            results.push(line);
+        }
+    }
+    results
 }
 
 //Test for taking a query and the text to search for the query in, and it will only return the lines from the text that contain the query
