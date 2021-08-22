@@ -28,8 +28,10 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> { //fn will return a ty
 
     //Takes the filename, opens the file and returns a Result<String> of the file's contents 
     let contents = fs::read_to_string(config.filename)?; //the ? will return the error value from the current fn for the caller to handle
-    
-    // println!("With text:\n{}", contents);
+
+    for line in search(&config.query, &contents){
+        println!("{}", line);
+    }
 
     Ok(()) //means calling run for its side effects only, it doesn't rn a value needed
 }

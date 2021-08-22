@@ -11,17 +11,13 @@ fn main() {
     // println!("{:?}", args); 
 
     
-    let config = Config::new(&args).unwrap_or_else(|err| { //unwrap allows to define custom non-panic error handling
-        // println!("Problem parsing arguments: {}", err);
+    let config = Config::new(&args).unwrap_or_else(|_err| { //unwrap allows to define custom non-panic error handling
         process::exit(1);
     });
 
-    // println!("Searching for {}", config.query); 
-    // println!("In file {}", config.filename);
 
     //if run returns an err value, call prcoess exit 1
-    if let Err(e) = minigrep::run(config) { 
-        // println!("Application error: {}", e);
+    if let Err(_e) = minigrep::run(config) { 
 
         process::exit(1);
     }
