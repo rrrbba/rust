@@ -1,5 +1,6 @@
 use std::error::Error;
 use std::fs;
+use std::env;
 
 
 pub struct Config {
@@ -19,8 +20,10 @@ impl Config {
         //a lot devs avoid using clone to fix ownership problems because of runtime cost
         let query = args[1].clone(); //program name
         let filename = args[2].clone(); 
+        
+        let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
-        Ok(Config { query, filename })
+        Ok(Config { query, filename, case_sensitive })
     }
 }
 
