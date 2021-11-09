@@ -5,6 +5,7 @@ use std::fs;
 pub struct Config {
     pub query: String,
     pub filename: String,
+    pub case_sensitive: bool,
 }
 
 //associates the new fn with Config
@@ -29,7 +30,13 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> { //fn will return a ty
     //Takes the filename, opens the file and returns a Result<String> of the file's contents 
     let contents = fs::read_to_string(config.filename)?; //the ? will return the error value from the current fn for the caller to handle
 
-    for line in search(&config.query, &contents){
+    let results = if config.case_sensitive {
+        search(&config.query, &contents)
+    } else {
+        search_case_insensitive(&config.query, &contents)
+    };
+
+    for line in results {
         println!("{}", line);
     }
 
